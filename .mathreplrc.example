@@ -1,0 +1,20 @@
+# MathREPL configuration file
+# Place this at ~/.mathreplrc
+
+# Custom constants (available in the REPL as variables)
+constants = {
+    "G": 6.674e-11,        # Gravitational constant (m³ kg⁻¹ s⁻²)
+    "c": 299792458,        # Speed of light (m/s)
+    "h": 6.626e-34,        # Planck constant (J·s)
+    "k_B": 1.381e-23,      # Boltzmann constant (J/K)
+    "N_A": 6.022e23,       # Avogadro's number (mol⁻¹)
+}
+
+# Default working precision (decimal digits)
+precision = 15
+
+# Expressions to evaluate on startup
+startup = []
+
+# Enable physical units by default
+units = False

@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mathrepl"
+version = "0.1.0"
+description = "A terminal-based interactive math notebook with symbolic computation and inline plots"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Antigravity"}
+]
+dependencies = [
+    "sympy>=1.12",
+    "mpmath>=1.3.0",
+    "prompt-toolkit>=3.0.0",
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+plots = ["matplotlib>=3.7.0"]
+export = ["nbformat>=5.9.0"]
+all = ["mathrepl[plots,export]"]
+dev = [
+    "pytest>=7.0.0",
+    "mypy>=1.0.0",
+    "mathrepl[all]",
+]
+
+[project.scripts]
+mathrepl = "mathrepl.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mathrepl"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/mathrepl"]
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
