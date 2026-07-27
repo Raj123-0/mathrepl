@@ -10,7 +10,7 @@
 
 ---
 
-## ✨ Features
+##  Features
 
 - **Natural math input** — write `2x + 3x`, `d/dx(sin(x))`, `x^2` instead of
   verbose Python syntax
@@ -37,7 +37,7 @@
 - **Plugin system** — define custom constants and startup expressions in
   `~/.mathreplrc`
 
-## 📦 Installation
+##  Installation
 
 ```bash
 # Clone and install in editable mode with all extras
@@ -57,7 +57,7 @@ pip install -e .
 | `export` | nbformat | `:export jupyter` command |
 | `all` | everything above | Full feature set |
 
-## 🚀 Quick Start
+##  Quick Start
 
 ```
 $ mathrepl
@@ -102,7 +102,7 @@ In [10]: :export latex
   Exported to LaTeX: mathrepl_session.tex
 ```
 
-## 📋 Commands
+##  Commands
 
 | Command | Description |
 |---------|-------------|
@@ -130,7 +130,7 @@ In [10]: :export latex
 | `Tab` | Autocomplete |
 | `↑` / `↓` | Navigate history |
 
-## 🤔 Why Not Just Use a Jupyter Notebook?
+##  Why Not Just Use a Jupyter Notebook?
 
 This is a fair question, and the honest answer is: **Jupyter is often the better
 choice.** Here's when each tool wins:
@@ -166,7 +166,7 @@ choice.** Here's when each tool wins:
 want a fast, focused math scratchpad with symbolic intelligence. It's not a
 Jupyter replacement — it's a Jupyter *complement*.
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 src/mathrepl/
@@ -197,13 +197,13 @@ src/mathrepl/
     └── loader.py     # ~/.mathreplrc loading
 ```
 
-## 🧪 Running Tests
+##  Running Tests
 
 ```bash
 python -m pytest tests/ -v
 ```
 
-## 🔮 Future Work (Stretch Goals)
+##  Future Work (Stretch Goals)
 
 - **Natural language input** — "integrate x squared from 0 to 1" parsed via a
   small grammar (no LLM needed)
@@ -212,6 +212,6 @@ python -m pytest tests/ -v
   the Online Encyclopedia of Integer Sequences
 - **Multi-user shared sessions** — two terminals, same session, over a local socket
 
-## 📄 License
+##  License
 
 MIT
