@@ -170,31 +170,31 @@ Jupyter replacement — it's a Jupyter *complement*.
 
 ```
 src/mathrepl/
-├── parser/           # Input tokenization and classification
-│   ├── tokenizer.py  # Implicit mult, d/dx, :=, N(), == detection
-│   ├── transformer.py # AST post-processing and simplification
-│   └── commands.py   # :command registry and help text
-├── engine/           # Evaluation and computation
-│   ├── evaluator.py  # Core eval pipeline
-│   ├── calculus.py   # diff, integrate, limit, series
-│   ├── algebra.py    # solve, dsolve, matrix ops
-│   ├── numeric.py    # Arbitrary precision via mpmath
-│   └── units.py      # Physical units
-├── session/          # State management
-│   ├── state.py      # SessionState: vars, funcs, history, undo
-│   ├── persistence.py # Save/load .mathrepl files
-│   └── export.py     # LaTeX and Jupyter export
-├── render/           # Terminal output
-│   ├── pretty.py     # Unicode math rendering + Rich theming
-│   ├── plots.py      # Matplotlib + terminal image protocol
-│   └── highlighting.py # Syntax highlighting lexer
-├── tui/              # Interactive shell
-│   ├── app.py        # Main REPL loop (prompt_toolkit)
-│   ├── completer.py  # Tab completion
-│   ├── keybindings.py # Keyboard shortcuts
-│   └── toolbar.py    # Bottom status bar
-└── config/           # Configuration
-    └── loader.py     # ~/.mathreplrc loading
+├── parser/              # Input tokenization and classification
+│   ├── tokenizer.py     # Implicit mult, d/dx, :=, N(), == detection
+│   ├── transformer.py   # AST post-processing and simplification
+│   └── commands.py      # :command registry and help text
+├── engine/              # Evaluation and computation
+│   ├── evaluator.py     # Core eval pipeline
+│   ├── calculus.py      # diff, integrate, limit, series
+│   ├── algebra.py       # solve, dsolve, matrix ops
+│   ├── numeric.py       # Arbitrary precision via mpmath
+│   └── units.py         # Physical units
+├── session/             # State management
+│   ├── state.py         # SessionState: vars, funcs, history, undo
+│   ├── persistence.py   # Save/load .mathrepl files
+│   └── export.py        # LaTeX and Jupyter export
+├── render/              # Terminal output
+│   ├── pretty.py        # Unicode math rendering + Rich theming
+│   ├── plots.py         # Matplotlib + terminal image protocol
+│   └── highlighting.py  # Syntax highlighting lexer
+├── tui/                 # Interactive shell
+│   ├── app.py           # Main REPL loop (prompt_toolkit)
+│   ├── completer.py     # Tab completion
+│   ├── keybindings.py   # Keyboard shortcuts
+│   └── toolbar.py       # Bottom status bar
+└── config/              # Configuration
+    └── loader.py        # ~/.mathreplrc loading
 ```
 
 ##  Running Tests
