@@ -169,9 +169,33 @@ def _render_3d(
     fig = plt.figure(figsize=(10, 8))
     ax = fig.add_subplot(111, projection="3d")
     ax.plot_surface(X, Y, Z, cmap="viridis", alpha=0.9)  # type: ignore[attr-defined]
+    
+    # Apply dark theme to match 2D plots
+    ax.set_facecolor("#1a1a2e")
+    fig.patch.set_facecolor("#16213e")
+    ax.tick_params(colors="white")
+    
     ax.set_xlabel(str(x_var))  # type: ignore[attr-defined]
     ax.set_ylabel(str(y_var))  # type: ignore[attr-defined]
     ax.set_title(str(expr))  # type: ignore[attr-defined]
+    
+    ax.xaxis.label.set_color("white")
+    ax.yaxis.label.set_color("white")
+    ax.zaxis.label.set_color("white")
+    ax.title.set_color("white")
+
+    # 3D specific pane and grid styling
+    ax.xaxis.set_pane_color((0.1, 0.1, 0.18, 1.0))
+    ax.yaxis.set_pane_color((0.1, 0.1, 0.18, 1.0))
+    ax.zaxis.set_pane_color((0.1, 0.1, 0.18, 1.0))
+    
+    # Try styling the 3D grid lines if possible
+    try:
+        ax.xaxis._axinfo["grid"]['color'] = "#444"
+        ax.yaxis._axinfo["grid"]['color'] = "#444"
+        ax.zaxis._axinfo["grid"]['color'] = "#444"
+    except (AttributeError, KeyError, TypeError):
+        pass
 
     return _show_or_save(fig)
 

@@ -47,41 +47,46 @@ def render_result(result: EvalResult, index: int) -> None:
             return
 
         case ResultKind.SYMBOLIC:
-            _print_out(index, _pretty(result.symbolic), "result.symbolic")
+            sym_str = _pretty(result.symbolic)
+            _print_out(index, sym_str, "result.symbolic")
 
         case ResultKind.NUMERIC:
             # Show both symbolic and numeric
             if result.symbolic is not None and result.symbolic != result.numeric:
                 sym_str = _pretty(result.symbolic)
                 num_str = str(result.numeric)
-                _print_out(index, f"{sym_str}\n       ≈ {num_str}", "result.numeric")
+                _print_out(index, f"{sym_str}\n  ≈ {num_str}", "result.numeric")
             else:
                 _print_out(index, str(result.numeric), "result.numeric")
 
         case ResultKind.ASSIGNMENT:
             sym_str = _pretty(result.assign_value)
-            _console.print(
-                Text(f"  {result.assign_target} ← ", style="result.assignment"),
-                Text(sym_str, style="result.symbolic"),
-                sep="",
+            _print_aligned(
+                f"  {result.assign_target} ← ", 
+                "result.assignment", 
+                sym_str, 
+                "result.symbolic"
             )
 
         case ResultKind.FUNC_DEFINITION:
             sym_str = _pretty(result.symbolic)
-            _console.print(
-                Text(f"  {result.func_name}(…) defined: ", style="result.function"),
-                Text(sym_str, style="result.symbolic"),
-                sep="",
+            _print_aligned(
+                f"  {result.func_name}(…) defined: ", 
+                "result.function", 
+                sym_str, 
+                "result.symbolic"
             )
 
         case ResultKind.EQUATION_SOLUTION:
             if result.solutions:
                 for i, sol in enumerate(result.solutions):
                     label = f"  x₍{i + 1}₎ = " if len(result.solutions) > 1 else "  x = "
-                    _console.print(
-                        Text(label, style="result.solution"),
-                        Text(_pretty(sol), style="result.symbolic"),
-                        sep="",
+                    sym_str = _pretty(sol)
+                    _print_aligned(
+                        label, 
+                        "result.solution", 
+                        sym_str, 
+                        "result.symbolic"
                     )
             else:
                 _console.print("  No solutions found.", style="info")
@@ -121,8 +126,8 @@ def render_welcome() -> None:
 
     banner = f"""
 [bold cyan]╔══════════════════════════════════════════════╗
-║           [bold white]MathREPL v{__version__}[bold cyan]                  ║
-║   [dim white]Interactive Symbolic Math Notebook[bold cyan]         ║
+║                [bold white]MathREPL v{__version__}[bold cyan]               ║
+║      [dim white]Interactive Symbolic Math Notebook[bold cyan]      ║
 ╚══════════════════════════════════════════════╝[/]
 
 [dim]  Type math expressions, e.g. [white]2x + 3x[/dim][dim], [white]d/dx(sin(x))[/dim]
@@ -147,25 +152,26 @@ def _pretty(expr: Any) -> str:
         return str(expr)
 
 
+def _print_aligned(prefix: str, prefix_style: str, text: str, text_style: str) -> None:
+    """Print text. If multiline, print prefix on its own line, then text indented."""
+    lines = text.split("\n")
+    if len(lines) == 1:
+        _console.print(
+            Text(prefix, style=prefix_style),
+            Text(lines[0], style=text_style),
+            sep="",
+        )
+    else:
+        _console.print(Text(prefix, style=prefix_style))
+        for line in lines:
+            _console.print(
+                Text("    "),
+                Text(line, style=text_style),
+                sep="",
+            )
+
+
 def _print_out(index: int, text: str, style: str) -> None:
     """Print a numbered output line."""
-    # Multi-line results: indent continuation lines
-    lines = text.split("\n")
     prefix = f"Out[{index}]: "
-    padding = " " * len(prefix)
-
-    first = True
-    for line in lines:
-        if first:
-            _console.print(
-                Text(prefix, style="prompt.out"),
-                Text(line, style=style),
-                sep="",
-            )
-            first = False
-        else:
-            _console.print(
-                Text(padding, style="prompt.out"),
-                Text(line, style=style),
-                sep="",
-            )
+    _print_aligned(prefix, "prompt.out", text, style)
