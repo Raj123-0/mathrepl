@@ -63,8 +63,8 @@ pip install -e .
 $ mathrepl
 
 ╔══════════════════════════════════════════════╗
-║           MathREPL v0.1.0                            ║
-║   Interactive Symbolic Math Notebook                 ║
+║           MathREPL v0.1.0                    ║
+║   Interactive Symbolic Math Notebook         ║
 ╚══════════════════════════════════════════════╝
 
 In [1]: 2x + 3x
