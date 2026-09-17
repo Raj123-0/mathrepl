@@ -8,9 +8,11 @@ from __future__ import annotations
 
 from typing import Any
 
+from sympy import Basic
 import mpmath
 import sympy
-from sympy import Basic
+
+
 
 
 def set_precision(digits: int) -> None:
@@ -75,7 +77,8 @@ def validate_precision_pi(digits: int) -> tuple[bool, str]:
 
     # Compare up to requested digits
     n = min(digits + 2, len(known))  # +2 for "3."
-    if computed[:n] == known[:n]:
+    if computed[:n] == known[:
+        n]:
         return True, f"π to {digits} digits: PASS"
     return False, f"π mismatch at {digits} digits:\n  got:    {computed[:n]}\n  expect: {known[:n]}"
 
@@ -90,6 +93,7 @@ def validate_precision_e(digits: int) -> tuple[bool, str]:
     )
 
     n = min(digits + 2, len(known))
-    if computed[:n] == known[:n]:
+    if computed[:n] == known[:
+        n]:
         return True, f"e to {digits} digits: PASS"
     return False, f"e mismatch at {digits} digits:\n  got:    {computed[:n]}\n  expect: {known[:n]}"

@@ -4,8 +4,10 @@ from __future__ import annotations
 
 from typing import Any
 
-import sympy
 from sympy import Basic, Eq, Function, Matrix, Symbol
+import sympy
+
+
 
 
 def solve_equation(

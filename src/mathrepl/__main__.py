@@ -1,13 +1,15 @@
-"""Entry point for ``python -m mathrepl`` and the ``mathrepl`` console script."""
-
-from __future__ import annotations
-
-
 import sys
 from pathlib import Path
+from typing import NoReturn
 
-def main() -> None:
-    """Launch the MathREPL interactive shell."""
+
+def main() -> NoReturn:
+    """Launch the MathREPL interactive shell.
+
+    This function ensures that the stdout handles Unicode and then launches the MathREPL
+    interactive shell. It is designed to be called as the entry point for the 'mathrepl'
+    console script.
+    """
     # Ensure stdout handles Unicode (critical for Windows terminals)
     if sys.stdout.encoding.lower() != "utf-8":
         try:
