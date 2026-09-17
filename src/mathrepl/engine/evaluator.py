@@ -124,6 +124,7 @@ def evaluate(
 # Evaluation helpers
 # ---------------------------------------------------------------------------
 
+
 def _build_local_dict(
     variables: dict[str, Basic],
     functions: dict[str, tuple[list[sympy.Symbol], Basic]],
